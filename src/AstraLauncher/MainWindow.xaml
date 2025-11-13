@@ -1,0 +1,183 @@
+<Window x:Class="AstraLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:AstraLauncher.ViewModels"
+        xmlns:views="clr-namespace:AstraLauncher.Views"
+        xmlns:wc="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
+        mc:Ignorable="d"
+        Title="Astra Launcher"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Width="1260"
+        Height="780"
+        ResizeMode="CanResizeWithGrip"
+        Loaded="Window_Loaded"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <wc:WindowChrome.WindowChrome>
+        <wc:WindowChrome CaptionHeight="0" CornerRadius="0" GlassFrameThickness="0" ResizeBorderThickness="8" />
+    </wc:WindowChrome.WindowChrome>
+    <Window.Resources>
+        <Storyboard x:Key="IntroAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:0.9">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
+                             From="0.96" To="1" Duration="0:0:0.9">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
+                             From="0.96" To="1" Duration="0:0:0.9">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Window.Resources>
+    <Grid x:Name="Root" Margin="24" Opacity="0" RenderTransformOrigin="0.5,0.5" Background="{DynamicResource WindowBackgroundBrush}">
+        <Grid.RenderTransform>
+            <ScaleTransform />
+        </Grid.RenderTransform>
+        <Border CornerRadius="32" Background="{DynamicResource LauncherSurface}" Padding="32" Effect="{DynamicResource SurfaceShadow}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="TitleBar" Height="48" Margin="0,0,0,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="12">
+                        <Border Width="32" Height="32" CornerRadius="12" Background="{DynamicResource AccentGradientBrush}">
+                            <Grid>
+                                <Image Source="{Binding LogoImageSource}" Stretch="UniformToFill">
+                                    <Image.Style>
+                                        <Style TargetType="Image">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding LogoImageSource}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                                <TextBlock Text="AL" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding LogoImageSource}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                        <StackPanel>
+                            <TextBlock Text="Astra Launcher" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource PrimaryText}" />
+                            <TextBlock Text="Premium Minecraft Experience" FontSize="12" Foreground="{DynamicResource SecondaryText}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Spacing="8">
+                        <Button Style="{DynamicResource IconButtonStyle}" Command="{Binding MinimizeCommand}">
+                            <Path Data="M3,8 L13,8" StrokeThickness="1.6" Stroke="{DynamicResource PrimaryText}" StrokeEndLineCap="Round" StrokeStartLineCap="Round" />
+                        </Button>
+                        <Button Style="{DynamicResource IconButtonStyle}" Command="{Binding ToggleMaximizeCommand}">
+                            <Rectangle Width="10" Height="10" StrokeThickness="1.4" Stroke="{DynamicResource PrimaryText}" RadiusX="2" RadiusY="2" />
+                        </Button>
+                        <Button Style="{DynamicResource IconButtonStyle}" Command="{Binding CloseCommand}">
+                            <Path Data="M4,4 L12,12 M12,4 L4,12" StrokeThickness="1.8" Stroke="{DynamicResource PrimaryText}" StrokeEndLineCap="Round" StrokeStartLineCap="Round" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="260" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Spacing="16">
+                        <ItemsControl ItemsSource="{Binding NavigationItems}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Style="{DynamicResource NavButtonStyle}"
+                                            Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                            CommandParameter="{Binding Identifier}"
+                                            Tag="{Binding Identifier}">
+                                        <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Icon}" FontSize="16" />
+                                            <TextBlock Text="{Binding Title}" />
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <Border Background="{DynamicResource GlassBackground}" CornerRadius="18" Padding="16">
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="Statut" Foreground="{DynamicResource SecondaryText}" FontSize="12" />
+                                <TextBlock Text="{Binding StatusMessage}" Foreground="{DynamicResource PrimaryText}" FontWeight="SemiBold" />
+                                <TextBlock Text="{Binding SelectedProfile.Name}" Foreground="{DynamicResource SecondaryText}" FontSize="12" />
+                                <ProgressBar Value="{Binding Progress}" Maximum="100" Height="4" Margin="0,12,0,0" Style="{DynamicResource ProgressStyle}" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <Border Grid.Column="1" CornerRadius="24" Background="{DynamicResource GlassBackground}" Padding="24">
+                        <ContentControl Content="{Binding CurrentView}">
+                            <ContentControl.Resources>
+                                <DataTemplate DataType="{x:Type viewModels:DashboardViewModel}">
+                                    <views:DashboardView />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
+                                    <views:SettingsView />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type viewModels:DiagnosticsViewModel}">
+                                    <views:DiagnosticsView />
+                                </DataTemplate>
+                            </ContentControl.Resources>
+                            <ContentControl.Triggers>
+                                <EventTrigger RoutedEvent="ContentControl.Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.4">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuadraticEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)" From="16" To="0" Duration="0:0:0.4">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuadraticEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </ContentControl.Triggers>
+                            <ContentControl.RenderTransform>
+                                <TranslateTransform />
+                            </ContentControl.RenderTransform>
+                        </ContentControl>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

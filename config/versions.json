@@ -1,0 +1,28 @@
+{
+  "profiles": [
+    {
+      "id": "vanilla-1-20-4",
+      "name": "Vanilla 1.20.4",
+      "version": "1.20.4",
+      "type": "release",
+      "loader": "Vanilla",
+      "gameDirectory": "%APPDATA%/AstraLauncher/profiles/vanilla-1-20-4"
+    },
+    {
+      "id": "forge-1-16-5",
+      "name": "Forge 1.16.5",
+      "version": "1.16.5",
+      "type": "release",
+      "loader": "Forge",
+      "gameDirectory": "%APPDATA%/AstraLauncher/profiles/forge-1-16-5"
+    },
+    {
+      "id": "snapshot-24w10a",
+      "name": "Snapshot 24w10a",
+      "version": "24w10a",
+      "type": "snapshot",
+      "loader": "Vanilla",
+      "gameDirectory": "%APPDATA%/AstraLauncher/profiles/snapshot-24w10a"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+<UserControl x:Class="AstraLauncher.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <StackPanel Spacing="24">
+            <TextBlock Text="Paramètres" FontSize="28" FontWeight="SemiBold" />
+
+            <Border Background="{DynamicResource GlassBackground}" CornerRadius="18" Padding="24">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Général" FontWeight="SemiBold" FontSize="18" />
+                    <StackPanel Orientation="Horizontal" Spacing="16">
+                        <StackPanel Width="200">
+                            <TextBlock Text="Thème" FontWeight="SemiBold" />
+                            <ComboBox ItemsSource="{Binding Themes}" SelectedItem="{Binding Theme}" />
+                        </StackPanel>
+                        <StackPanel Width="200">
+                            <TextBlock Text="Langue" FontWeight="SemiBold" />
+                            <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding Language}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Dossier des logs" FontWeight="SemiBold" />
+                        <TextBox Text="{Binding LogsDirectory}" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Dossier des données de jeu" FontWeight="SemiBold" />
+                        <TextBox Text="{Binding GameDataRoot}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Background="{DynamicResource GlassBackground}" CornerRadius="18" Padding="24">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Minecraft" FontWeight="SemiBold" FontSize="18" />
+                    <StackPanel Orientation="Horizontal" Spacing="16">
+                        <StackPanel Width="200">
+                            <TextBlock Text="RAM minimale (Mo)" />
+                            <Slider Minimum="512" Maximum="16384" Value="{Binding MinRam}" TickFrequency="512" IsSnapToTickEnabled="True" />
+                            <TextBlock Text="{Binding MinRam}" HorizontalAlignment="Right" />
+                        </StackPanel>
+                        <StackPanel Width="200">
+                            <TextBlock Text="RAM maximale (Mo)" />
+                            <Slider Minimum="1024" Maximum="32768" Value="{Binding MaxRam}" TickFrequency="512" IsSnapToTickEnabled="True" />
+                            <TextBlock Text="{Binding MaxRam}" HorizontalAlignment="Right" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Arguments JVM" />
+                        <TextBox Text="{Binding JvmArguments}" AcceptsReturn="True" Height="80" />
+                    </StackPanel>
+                    <Button Content="Sauvegarder" Command="{Binding SaveCommand}" Style="{DynamicResource PrimaryButtonStyle}" HorizontalAlignment="Right" Width="160" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

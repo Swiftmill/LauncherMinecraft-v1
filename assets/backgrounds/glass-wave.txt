@@ -1,0 +1,3 @@
+Placeholder description for the glass-wave background.
+
+Drop a high-resolution PNG (minimum 1920x1080) with soft gradients or glass textures in this folder and rename it to `glass-wave.png` if you want to re-enable the textured background.
