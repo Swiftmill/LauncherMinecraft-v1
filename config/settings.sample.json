@@ -1,0 +1,23 @@
+{
+  "launcherVersion": "1.0.0",
+  "theme": "auto",
+  "language": "fr-FR",
+  "gameDataRoot": "%APPDATA%/AstraLauncher",
+  "logsDirectory": "%APPDATA%/AstraLauncher/logs",
+  "defaultProfileId": "vanilla-1-20-4",
+  "network": {
+    "cdn": "https://cdn.example.com/minecraft",
+    "timeoutSeconds": 30,
+    "retryCount": 3
+  },
+  "game": {
+    "minRamMb": 2048,
+    "maxRamMb": 4096,
+    "jvmArguments": "-XX:+UnlockExperimentalVMOptions",
+    "resolution": {
+      "width": 1600,
+      "height": 900,
+      "fullscreen": false
+    }
+  }
+}

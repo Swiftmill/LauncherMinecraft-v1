@@ -1,0 +1,26 @@
+<UserControl x:Class="AstraLauncher.Views.DiagnosticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <StackPanel Spacing="24">
+        <TextBlock Text="Diagnostic" FontSize="28" FontWeight="SemiBold" />
+
+        <Border Background="{DynamicResource GlassBackground}" CornerRadius="18" Padding="24">
+            <StackPanel Spacing="16">
+                <TextBlock Text="Actions" FontWeight="SemiBold" />
+                <Button Content="Ouvrir le dossier de logs" Command="{Binding OpenLogsCommand}" Style="{DynamicResource SecondaryButtonStyle}" Width="220" />
+                <Button Content="Copier les informations système" Command="{Binding CopySystemInfoCommand}" Style="{DynamicResource SecondaryButtonStyle}" Width="260" />
+            </StackPanel>
+        </Border>
+
+        <Border Background="{DynamicResource GlassBackground}" CornerRadius="18" Padding="24">
+            <StackPanel Spacing="12">
+                <TextBlock Text="Historique" FontWeight="SemiBold" />
+                <TextBlock Text="Les logs détaillés des téléchargements, mises à jour et erreurs seront affichés ici." TextWrapping="Wrap" Foreground="{DynamicResource SecondaryText}" />
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

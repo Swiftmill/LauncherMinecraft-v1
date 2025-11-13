@@ -1,0 +1,9 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="WindowBackgroundColor">#111827</Color>
+    <SolidColorBrush x:Key="LauncherSurface" Color="#CC1F2937" />
+    <SolidColorBrush x:Key="WindowBackground" Color="#111827" />
+    <SolidColorBrush x:Key="PrimaryText" Color="#F9FAFB" />
+    <SolidColorBrush x:Key="SecondaryText" Color="#A8B1C1" />
+    <SolidColorBrush x:Key="GlassBackground" Color="#33FFFFFF" />
+</ResourceDictionary>
